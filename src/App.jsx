@@ -1,47 +1,36 @@
-import Alert from "./components/alert";
-import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
 import { useState } from "react";
 
-import { getUsers } from "../data/database";
+function Sum({ num1, num2 }) {
+  const result = num1 + num2;
+  return <p>Sum: {result}</p>;
+}
 
-function App() {
-  
-  const [alertVisible, setAlertVisibility] = useState(false);
-  let items = ["test", "test2", "test3"];
+export default function App() {
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+
+  function calculate() {
+    // Read the input values directly
+    const inputNum1 = parseFloat(
+      document.querySelector('input[name="num1"]').value
+    );
+    const inputNum2 = parseFloat(
+      document.querySelector('input[name="num2"]').value
+    );
+
+    // Update the state with the input values
+    setNum1(inputNum1);
+    setNum2(inputNum2);
+  }
 
   return (
     <>
-      <div className="alert alert-primary">
-        {alertVisible && (
-          <Alert onClose={() => setAlertVisibility(false)}>
-            <h1>Testing the Alert</h1>
-          </Alert>
-        )}
-      </div>
-
-      <div>
-        <ListGroup items={items} heading="test" />
-      </div>
-
-      <div>
-        <Button
-          color="success"
-          children="This is a button"
-          onClick={() => setAlertVisibility(true)}
-        />
-      </div>
-        
-      <div>
-      {getUsers().map((user) => (
-        <div key={user.id}>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-        </div>
-      ))}
-    </div>
+      <input type="number" name="num1" />
+      <input type="number" name="num2" />
+      <br />
+      <br />
+      <button onClick={calculate}>Calculate</button>
+      <Sum num1={num1} num2={num2} />
     </>
   );
 }
-
-export default App;
