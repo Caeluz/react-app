@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "name": "SHOPPING LIST",
+      "title": "SHOPPING LIST",
       "items": [
         {
           "name": "GROCERIES",
@@ -33,11 +33,16 @@
       ]
     },
     {
-      "name": "TO DO LIST",
+      "title": "TO DO LIST",
       "items": [
         {
-          "name": "Do your chores",
-          "done": true
+          "name": "CHORES",
+          "items": [
+            {
+              "name": "Clean your room",
+              "done": false
+            }
+          ]
         }
       ]
     }

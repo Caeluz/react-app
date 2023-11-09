@@ -10,49 +10,31 @@ import React, { useState } from "react";
 //   items: FoodType[]; // The list of items to search through
 // }
 
-interface Props {
-  data: [
-    {
-      name: string;
-      items: [
-        {
-          name: string;
-          items: [
-            {
-              name: string;
-              done: boolean;
-            },
-          ];
-        },
-      ];
-    },
-  ];
+interface Item2 {
+  name: string;
+  done: boolean;
 }
 
-// type Daum = {
-//   name: string;
-//   items: Item[];
-// };
+interface Item {
+  name: string;
+  items: Item2[];
+}
 
-// interface Item {
-//   name: string;
-//   items: Item2[];
-// }
+interface Category {
+  title: string;
+  items: Item[];
+}
 
-// interface Item2 {
-//   name: string;
-//   done: boolean;
-// }
+interface Props {
+  // data: Category[];
+  data: any;
+}
 
 const SideBar: React.FC<Props> = ({ data }) => {
-  console.log(data);
-
   const [searchResult, setSearchResult] = useState<string>("");
-  const [filteredTitles, setFilteredTitles] = useState<string[]>(
-    data.map((item) => item.name)
-  );
-  // data.map((item) => item.name)
   const [clickedTitle, setClickedTitle] = useState<string | null>(null);
+
+  console.log(data.title);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
@@ -84,7 +66,7 @@ const SideBar: React.FC<Props> = ({ data }) => {
         />
       </div>
       <div>
-        <h1 style={styles.title}>{title}</h1>
+        {/* <h1 style={styles.title}>{data.title}</h1> */}
         <ul style={styles.itemList}>
           {filteredTitles.map((categoryTitle, index) => (
             <li
