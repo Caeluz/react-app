@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "name": "SHOPPING LIST",
+      "items": [
+        {
+          "name": "GROCERIES",
+          "items": [
+            {
+              "name": "Milk",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "ELECTRONICS",
+          "items": [
+            {
+              "name": "Laptop",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "BOOKS",
+          "items": [
+            {
+              "name": "The Alchemist",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TO DO LIST",
+      "items": [
+        {
+          "name": "Do your chores",
+          "done": true
+        }
+      ]
+    }
+  ]
+}

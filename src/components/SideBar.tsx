@@ -1,39 +1,75 @@
 import React, { useState } from "react";
 
-interface FoodType {
-  title: string;
-  items: string[];
-}
+// interface FoodType {
+//   title: string;
+//   items: string[];
+// }
+
+// interface Props {
+//   title: string;
+//   items: FoodType[]; // The list of items to search through
+// }
 
 interface Props {
-  title: string;
-  items: FoodType[]; // The list of items to search through
+  data: [
+    {
+      name: string;
+      items: [
+        {
+          name: string;
+          items: [
+            {
+              name: string;
+              done: boolean;
+            },
+          ];
+        },
+      ];
+    },
+  ];
 }
 
-const SideBar: React.FC<Props> = ({ title, items }) => {
+// type Daum = {
+//   name: string;
+//   items: Item[];
+// };
+
+// interface Item {
+//   name: string;
+//   items: Item2[];
+// }
+
+// interface Item2 {
+//   name: string;
+//   done: boolean;
+// }
+
+const SideBar: React.FC<Props> = ({ data }) => {
+  console.log(data);
+
   const [searchResult, setSearchResult] = useState<string>("");
-  const [filteredItems, setFilteredItems] = useState<string[]>([]);
-  const [clickedItem, setClickedItem] = useState<number | null>(null);
+  const [filteredTitles, setFilteredTitles] = useState<string[]>(
+    data.map((item) => item.name)
+  );
+  // data.map((item) => item.name)
+  const [clickedTitle, setClickedTitle] = useState<string | null>(null);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchResult(searchTerm);
 
     // Filter the items based on the search term
-    const filtered: FoodType[] = items
-      .map((category) => ({
-        title: category.title,
-        items: category.items.filter((item) =>
-          item.toLowerCase().includes(searchTerm.toLowerCase())
-        ),
-      }))
-      .filter((category) => category.items.length > 0);
+    const filtered = items
+      .map((category) => category.title)
+      .filter((title) =>
+        title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
-    setFilteredItems(filtered);
+    setFilteredTitles(filtered);
   };
 
-  const handleItemClick = (index: number) => {
-    setClickedItem(index);
+  const handleTitleClick = (title: string) => {
+    setClickedTitle(title);
   };
 
   return (
@@ -50,24 +86,23 @@ const SideBar: React.FC<Props> = ({ title, items }) => {
       <div>
         <h1 style={styles.title}>{title}</h1>
         <ul style={styles.itemList}>
-          {filteredItems.map((category, categoryIndex) => (
-            <div key={categoryIndex}>
-              <h2>{category.title}</h2>
-              {category.items.map((item, index) => (
-                <li
-                  key={index}
-                  style={{
-                    ...styles.item,
-                    backgroundColor:
-                      clickedItem === index ? "#ffffff" : "#36474f",
-                    color: clickedItem === index ? "#36474f" : "#ffffff",
-                  }}
-                  onClick={() => handleItemClick(index)}
-                >
-                  {item}
-                </li>
-              ))}
-            </div>
+          {filteredTitles.map((categoryTitle, index) => (
+            <li
+              key={index}
+              style={{
+                ...styles.item,
+                backgroundColor:
+                  clickedTitle === categoryTitle ? "#ffffff" : "#36474f",
+                color: clickedTitle === categoryTitle ? "#36474f" : "#ffffff",
+              }}
+              onClick={() => handleTitleClick(categoryTitle)}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span>{categoryTitle}</span>
+                <span>{items[index].items.length}</span>
+                <span></span>
+              </div>
+            </li>
           ))}
         </ul>
       </div>
@@ -80,7 +115,7 @@ const styles = {
     position: "fixed",
     top: "0",
     left: "0",
-    width: "50%",
+    width: "30%",
     height: "100%",
     backgroundColor: "#36474f",
     // flex: 1,
