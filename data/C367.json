@@ -1,14 +1,52 @@
 {
   "data": [
     {
+      "title": "REMINDERS",
+      "items": [
+        {
+          "name": "9:00 AM",
+          "items": [
+            {
+              "name": "Wake up",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "SHOPPING LIST",
       "items": [
         {
           "name": "GROCERIES",
           "items": [
             {
-              "name": "Milk",
+              "name": "Butter",
+              "done": true
+            },
+            {
+              "name": "Orange juice",
+              "done": true
+            },
+            {
+              "name": "Cheese",
               "done": false
+            },
+            {
+              "name": "Chocolate",
+              "done": true
+            },
+            {
+              "name": "Corn flakes",
+              "done": false
+            },
+            {
+              "name": "Potatoes",
+              "done": false
+            },
+            {
+              "name": "Avocado",
+              "done": true
             }
           ]
         },
@@ -40,6 +78,38 @@
           "items": [
             {
               "name": "Clean your room",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "OTHER",
+      "items": [
+        {
+          "name": "OTHERS",
+          "items": [
+            {
+              "name": "OTHERS",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "OTHERS",
+          "items": [
+            {
+              "name": "OTHERS",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "OTHERS",
+          "items": [
+            {
+              "name": "OTHERS",
               "done": false
             }
           ]

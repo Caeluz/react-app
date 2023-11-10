@@ -26,7 +26,7 @@ interface GetJsonResponse {
 }
 
 const C367: React.FC = () => {
-  const [jsonData, setJsonData] = useState<GetJsonResponse | null>(null);
+  const [jsonData, setJsonData] = useState<GetJsonResponse>({ data: [] });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,12 +45,10 @@ const C367: React.FC = () => {
     fetchData();
   }, []);
 
-  console.log(jsonData);
-
   return (
     <>
       <div style={{ flex: 1 }}>
-        <SideBar data={jsonData} />
+        <SideBar data={jsonData.data} />
       </div>
     </>
   );

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ExpendableList from "./ExpendableList";
+import MainContent from "./MainContent";
 
 // interface FoodType {
 //   title: string;
@@ -26,68 +28,116 @@ interface Category {
 }
 
 interface Props {
-  // data: Category[];
-  data: any;
+  data: Category[];
+  // data: any;
 }
 
 const SideBar: React.FC<Props> = ({ data }) => {
   const [searchResult, setSearchResult] = useState<string>("");
   const [clickedTitle, setClickedTitle] = useState<string | null>(null);
+  const [filteredTitles, setFilteredTitles] = useState<string[]>([]);
 
-  console.log(data.title);
+  // Initialize filteredTitles with all category titles when the component mounts
+  useEffect(() => {
+    const allTitles = data.map((category) => category.title);
+    setFilteredTitles(allTitles);
+  }, [data]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchResult(searchTerm);
 
     // Filter the items based on the search term
-    const filtered = items
-      .map((category) => category.title)
-      .filter((title) =>
+    const filtered = data
+      .map((category: Category) => category.title)
+      .filter((title: string) =>
         title.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
     setFilteredTitles(filtered);
   };
 
+  console.log(filteredTitles);
+
   const handleTitleClick = (title: string) => {
     setClickedTitle(title);
   };
 
   return (
-    <div style={styles.sidebar}>
-      <div style={styles.searchContainer}>
-        <input
-          type="text"
-          onChange={handleSearch}
-          value={searchResult}
-          style={styles.input}
-          placeholder="Search..."
-        />
+    <div>
+      <div style={styles.sidebar}>
+        <div style={styles.searchContainer}>
+          <input
+            type="text"
+            onChange={handleSearch}
+            value={searchResult}
+            style={styles.input}
+            placeholder="Search"
+          />
+          <style>
+            {`
+            ::placeholder {
+              color: #cdd3d6;
+              marginLeft: 10px;
+            }
+          `}
+          </style>
+        </div>
+        <div>
+          <ul style={styles.itemList}>
+            {filteredTitles.map((categoryTitle, index) => {
+              const category = data.find(
+                (category: Category) => category.title === categoryTitle
+              );
+              if (category) {
+                return (
+                  <li
+                    key={index}
+                    style={{
+                      ...styles.item,
+                      backgroundColor:
+                        clickedTitle === categoryTitle ? "#ffffff" : "#36474f",
+                      color:
+                        clickedTitle === categoryTitle ? "#36474f" : "#ffffff",
+                    }}
+                    onClick={() => handleTitleClick(categoryTitle)}
+                  >
+                    <div style={styles.itemContent}>
+                      <span>{categoryTitle}</span>
+                      <span
+                        style={{
+                          marginLeft: "auto", // Adjust the margin if needed
+                          marginRight: "10px", // Adjust the margin if needed
+                          borderRadius: "50%",
+                          textAlign: "center",
+                          padding: "8px", // Adjust the padding for better visual appearance
+                          width: "20px",
+                          height: "20px",
+                          fontSize: "12px", // Adjust the font size for better visibility
+                          display: "flex",
+                          alignItems: "center", // Center the text vertically
+                          justifyContent: "center", // Center the text horizontally
+                          backgroundColor:
+                            clickedTitle === categoryTitle
+                              ? "#d9ddde"
+                              : "#2c3e48",
+                        }}
+                      >
+                        {category.items.length}
+                      </span>
+                    </div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </div>
       </div>
-      <div>
-        {/* <h1 style={styles.title}>{data.title}</h1> */}
-        <ul style={styles.itemList}>
-          {filteredTitles.map((categoryTitle, index) => (
-            <li
-              key={index}
-              style={{
-                ...styles.item,
-                backgroundColor:
-                  clickedTitle === categoryTitle ? "#ffffff" : "#36474f",
-                color: clickedTitle === categoryTitle ? "#36474f" : "#ffffff",
-              }}
-              onClick={() => handleTitleClick(categoryTitle)}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>{categoryTitle}</span>
-                <span>{items[index].items.length}</span>
-                <span></span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <MainContent
+        category={
+          clickedTitle ? data.find((c) => c.title === clickedTitle) : null
+        }
+      />
     </div>
   );
 };
@@ -100,13 +150,15 @@ const styles = {
     width: "30%",
     height: "100%",
     backgroundColor: "#36474f",
-    // flex: 1,
-    // padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
     border: "1px solid #ddd",
   },
   searchContainer: {
     display: "flex",
     alignItems: "center",
+    marginBottom: "10px",
   },
   input: {
     flex: 1,
@@ -117,8 +169,9 @@ const styles = {
     border: "none",
     borderRadius: "20px",
     outline: "none",
+    backgroundColor: "#43545c",
+    color: "#cdd3d6",
   },
-
   title: {
     fontSize: "20px",
     margin: "10px 0 10px 10px",
@@ -128,6 +181,13 @@ const styles = {
     listStyle: "none",
     padding: 0,
   },
+
+  itemContent: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
   item: {
     marginBottom: "5px",
     padding: "10px",
