@@ -7,12 +7,18 @@ import ErrorPage from "./error-page.tsx";
 
 import C367 from "./pages/C367.tsx";
 
+import ToDoList from "./pages/ToDoList.tsx";
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/c367",
     // element: <Root />,
     element: <C367 />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/",
+    element: <ToDoList />,
   },
 ]);
 
