@@ -8,6 +8,7 @@ import ErrorPage from "./error-page.tsx";
 import C367 from "./pages/C367.tsx";
 
 import ToDoList from "./pages/ToDoList.tsx";
+import Problems from "./pages/Problems.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <ToDoList />,
+  },
+  {
+    path: "/problems",
+    element: <Problems />,
   },
 ]);
 
