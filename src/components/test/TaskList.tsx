@@ -22,6 +22,7 @@ const TaskList: React.FC<TaskListProps> = ({
 }) => {
   const [newTask, setNewTask] = useState("");
 
+
   const handleAddTask = () => {
     if (newTask.trim() !== "") {
       setTasks([...tasks, { category: selectedCategory, task: newTask }]);

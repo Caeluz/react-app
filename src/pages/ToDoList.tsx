@@ -8,6 +8,8 @@ const ToDoList: React.FC = () => {
 
   return (
     <div className="App">
+      <h1 className="text-3xl font-bold">Test</h1>
+      <h1>Test</h1>
       <Sidebar
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}

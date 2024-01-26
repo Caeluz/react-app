@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CiMenuKebab } from "react-icons/ci";
 
 interface Item {
   name: string;
@@ -38,6 +39,7 @@ const ExpendableList: React.FC<Props> = ({ children }) => {
   const listStyle = {
     padding: "10px",
     flex: 1,
+
     // paddingBottom: "100px",
   };
 
@@ -59,6 +61,8 @@ const ExpendableList: React.FC<Props> = ({ children }) => {
             onClick={() => handleExpend(item.name)}
           >
             {item.name}
+            <CiMenuKebab />
+
             {expandedItems[item.name] && (
               <div>
                 {item.items.map((subItem: string, subIndex: string) => (

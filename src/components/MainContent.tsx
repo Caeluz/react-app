@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ExpendableList from "./ExpendableList";
 
 interface Item2 {
@@ -21,7 +21,7 @@ const MainContent: React.FC<{ category: Category | null }> = ({ category }) => {
     return <div>Select a category</div>;
   }
 
-  console.log(category);
+  
 
   return (
     <div style={styles.mainContent}>

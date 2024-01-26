@@ -34,6 +34,7 @@ const C367: React.FC = () => {
         const response: GetJsonResponse = await axios.get<GetJsonResponse>(
           "../../data/C367.json"
         );
+        console.log(response.data);
         // const data: GetJsonResponse = response.data;
         setJsonData(response.data);
       } catch (error) {

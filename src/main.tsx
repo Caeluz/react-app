@@ -9,6 +9,8 @@ import C367 from "./pages/C367.tsx";
 
 import ToDoList from "./pages/ToDoList.tsx";
 
+import Increment from "./pages/Increment.tsx";
+
 const router = createBrowserRouter([
   {
     path: "/c367",
@@ -18,8 +20,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <ToDoList />,
+    // element: <ToDoList />,
+    element: <Increment />,
   },
+  {
+    path: "/increment",
+    // element: <Increment />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
