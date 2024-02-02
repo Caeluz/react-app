@@ -10,6 +10,7 @@ import C367 from "./pages/C367.tsx";
 import ToDoList from "./pages/ToDoList.tsx";
 
 import Increment from "./pages/Increment.tsx";
+import Landing from "./pages/Landing.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     // element: <ToDoList />,
-    element: <Increment />,
+    element: <Landing />,
   },
   {
     path: "/increment",

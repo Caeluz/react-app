@@ -1,0 +1,67 @@
+.fullscreen-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.background-image {
+  background-image: linear-gradient(
+      rgba(2, 0, 36, 0.7),
+      rgba(31, 31, 90, 0.7),
+      rgba(46, 104, 116, 0.7)
+    ),
+    url("../images/mountains.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.centered-text {
+  color: #fff;
+  padding: 200px;
+  /* padding: 20%; */
+}
+
+.centered-text h1 {
+  /* font-size: 2.5rem; */
+  font-size: 5rem;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.centered-text p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.cta-button {
+  background-color: #fff;
+  color: #333;
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #333;
+  color: #fff;
+}
