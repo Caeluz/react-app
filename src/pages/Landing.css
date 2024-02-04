@@ -24,7 +24,9 @@
 
 .centered-text {
   color: #fff;
-  padding: 200px;
+  padding: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
   /* padding: 20%; */
 }
 
@@ -41,6 +43,12 @@
   margin: 20px auto;
 }
 
+.paragraph-container {
+  /* max-height: 80px; */
+  max-height: 500px;
+  /* overflow-y: auto; */
+}
+
 .nav-buttons {
   display: flex;
   justify-content: space-between;
@@ -48,6 +56,7 @@
   top: 50%;
   width: 100%;
   transform: translateY(-50%);
+  padding: 0 30px;
 }
 
 .cta-button {
@@ -59,9 +68,63 @@
   border-radius: 40px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .cta-button:hover {
   background-color: #333;
   color: #fff;
+}
+
+.circle {
+  /* margin-top: 200px; */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.circle.active {
+  background-color: #fff;
+}
+
+/* .circle-container {
+  display: flex;
+  align-items: center;
+} */
+
+.navbar {
+  padding: 50px 0;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-logo {
+  color: #fff; /* Set your desired text color */
+  text-decoration: none;
+  font-size: 1.5rem; /* Set your desired font size */
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-link {
+  color: #fff; /* Set your desired text color */
+  text-decoration: none;
+  margin-left: 20px; /* Set your desired margin between links */
+  font-size: 1rem; /* Set your desired font size */
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
 }
