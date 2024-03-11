@@ -4,9 +4,14 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import "./Landing.css";
 import { Link } from "react-router-dom";
 
+// redux
+import store, { loginSuccess, loginFailure } from "../store/Store";
+
 const Landing: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(1);
   const totalSections = 3;
+
+  console.log("Token:", store.getState().token);
 
   const handleNextSection = () => {
     setCurrentSection((prevSection) => (prevSection % totalSections) + 1);
